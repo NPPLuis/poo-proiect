@@ -1,6 +1,6 @@
-# Nu primesc notă pentru că nu am pus titlu și descriere
+# Knight's Ascent
 
-### Folosiți template-ul corespunzător grupei voastre!
+### Knight's Ascent este un joc de strategie de tip turn-based combat dezvoltat în C++. Jucătorul controlează un cavaler care se luptă pe rând cu diverși monștri, având ca scop supraviețuirea și evoluția personajului.
 
 | Laborant  | Link template                                |
 |-----------|----------------------------------------------|
