@@ -11,6 +11,6 @@ int main() {
     Knight copie= karl;
     std::cout << "DEBUG HP: " << s1.getHp() << std::endl;
     std::cout << "DEBUG Weapon: " << w1.getName() << std::endl;
-    std::cout << "Atacul total al lui Karl: " << karl.getTotalAttack() << std::endl;
+    std::cout << "Atacul total al lui Karl: "<< karl.getTotalAttack() << std::endl;
     return 0;
 }
