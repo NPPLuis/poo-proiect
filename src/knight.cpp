@@ -26,7 +26,7 @@ int Knight::getTotalAttack() const {
 }
 
 std::ostream& operator<<(std::ostream& os, const Knight& k) {
-    os << "Cavaler: " << k.name << "\n" << k.stats << "\n" << k.weapon;
+    os << "Cavaler: " << k.name << "\n" << k.stats << k.weapon;
     os << "Putere totala: " << k.getTotalAttack();
     return os;
 }

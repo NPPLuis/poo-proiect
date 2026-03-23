@@ -18,7 +18,7 @@ public:
     Knight& operator=(const Knight& other);
     ~Knight();
 
-    int getTotalAttack() const;
+    [[nodiscard]] int getTotalAttack() const;
 
     friend std::ostream& operator<<(std::ostream& os, const Knight& k);
 };
