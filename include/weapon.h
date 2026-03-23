@@ -11,8 +11,8 @@ private:
 
 public:
     Weapon(const std::string& name_val, int bonus_val);
-    int getBonusDamage() const;
-    const std::string& getName() const;
+    [[nodiscard]] int getBonusDamage() const;
+    [[nodiscard]] const std::string& getName() const;
     friend std::ostream& operator<<(std::ostream& os, const Weapon& w);
 };
 

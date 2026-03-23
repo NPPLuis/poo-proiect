@@ -9,8 +9,8 @@ private:
     int attack;
 public:
     Stats(int hp_val, int atk_val);
-    int getHp() const;
-    int getAttack() const;
+    [[nodiscard]] int getHp() const;
+    [[nodiscard]] int getAttack() const;
     friend std::ostream& operator<<(std::ostream& os, const Stats& s);
 };
 
