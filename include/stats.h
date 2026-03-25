@@ -8,6 +8,7 @@ private:
     int hp;
     int attack;
 public:
+    void setHp(int new_hp);
     Stats(int hp_val, int atk_val);
     [[nodiscard]] int getHp() const;
     [[nodiscard]] int getAttack() const;

@@ -1,5 +1,9 @@
 #include "../include/stats.h"
 
+void Stats::setHp(int new_hp) {
+    hp = new_hp;
+}
+
 Stats::Stats(int hp_val, int atk_val) : hp(hp_val), attack(atk_val) {}
 
 int Stats::getHp() const { return hp; }

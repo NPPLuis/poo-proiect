@@ -1,4 +1,3 @@
-
 #include "../include/weapon.h"
 
 Weapon::Weapon(const std::string& name_val, int bonus_val)
