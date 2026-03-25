@@ -57,6 +57,8 @@ add_executable(${MAIN_EXECUTABLE_NAME}
         include/weapon.h
         src/knight.cpp
         include/knight.h
+        src/armor.cpp
+        include/armor.h
 )
 #target_sources(${MAIN_EXECUTABLE_NAME}
     ##PRIVATE
