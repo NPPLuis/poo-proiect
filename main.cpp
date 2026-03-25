@@ -11,7 +11,7 @@ int main() {
     Armor a1("Aur", 50);
 
     Knight karl("Karl", s1, w1, a1);
-    Monster goblin("Goblin Furios", 80, 20);
+    Monster goblin("Goblin", 80, 20);
 
     Knight copie = karl;
     Knight alt_cavaler("Arthur", Stats(90, 20), Weapon("Pumnal", 5), Armor("Piele", 10));
