@@ -1,4 +1,4 @@
-#include "armor.h"
+#include "../include/armor.h"
 #include<iostream>
 
 Armor::Armor(const std::string& name_val, const int bonusHP_val)
