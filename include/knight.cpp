@@ -21,7 +21,7 @@ Knight& Knight::operator=(const Knight& other) {
 }
 
 Knight::~Knight() {
-    std::cout << "Cavalerul " << name << " a murit" << std::endl;
+    std::cout << "Cavalerul " << name << " s-a despwanat" << std::endl;
 }
 
 int Knight::getTotalAttack() const {
@@ -46,7 +46,7 @@ std::ostream& operator<<(std::ostream& os, const Knight& k) {
 void Knight::receiveDamage(int damage_amount) {
     int hp_baza = stats.getHp();
     stats.setHp(hp_baza - damage_amount);
-    std::cout << "HP Total (Baza + Armura): " << getTotalHP() << std::endl;
+    std::cout << "HP ramas: " << getTotalHP() << std::endl;
 }
 
 void Knight::attackMonster(Monster& target) const {

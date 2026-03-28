@@ -20,7 +20,7 @@ public:
 
     [[nodiscard]] int getHp() const;
     [[nodiscard]] const std::string& getName() const;
-
+    [[nodiscard]] int getDamage() const;
     friend std::ostream& operator<<(std::ostream& os, const Monster& m);
 };
 
