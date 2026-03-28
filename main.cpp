@@ -29,7 +29,7 @@ int main() {
     std::cout << "Armura: " << a1.getName() << " | Bonus HP +" << a1.getBonusHP() << "\n";
     std::cout << "Cavaler Nume: " << karl.getName() << "\n";
 
-    std::cout << "Monstru: " << goblin.getName() << " | HP Ramas: " << goblin.getHp() << "\n";
+    std::cout << "Monstru: " << goblin.getName() << " | HP Ramas: " << goblin.getHp() << " " << goblin.getDamage()<<"\n";
 
     return 0;
 }
