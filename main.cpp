@@ -53,11 +53,15 @@ int main() {
 
         std::cout << arena << "\n\n";
 
-        while (!arena.finished()) {
+        while (!arena.finished() && karl.isAlive()) {
             karl.fight(arena);
             arena.runRound(karl);
             arena.advance();
             std::cout << "---\n";
+        }
+
+        if (!karl.isAlive()) {
+            std::cout << "Karl a cazut in lupta.\n";
         }
 
         demoInvalidStats();
