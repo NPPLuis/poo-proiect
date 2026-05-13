@@ -61,6 +61,8 @@ add_executable(${MAIN_EXECUTABLE_NAME}
         include/orc.h
         src/dragon.cpp
         include/dragon.h
+        src/skeleton.cpp
+        include/skeleton.h
         src/battle.cpp
         include/battle.h
         src/exceptions.cpp

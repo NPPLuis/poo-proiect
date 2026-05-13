@@ -3,6 +3,7 @@
 #include "../include/exceptions.h"
 #include "../include/goblin.h"
 #include "../include/orc.h"
+#include "../include/skeleton.h"
 
 #include <fstream>
 #include <sstream>
@@ -39,6 +40,12 @@ std::vector<std::unique_ptr<Monster>> MonsterLoader::loadFromFile(const std::str
                 throw MonsterFileException(path, "dragon fara bonus de foc la linia " + std::to_string(line_no));
             }
             result.push_back(std::make_unique<Dragon>(name, hp, dmg, fire));
+        } else if (type == "skeleton") {
+            int revives = 0;
+            if (!(iss >> revives)) {
+                throw MonsterFileException(path, "skeleton fara numar de reinvieri la linia " + std::to_string(line_no));
+            }
+            result.push_back(std::make_unique<Skeleton>(name, hp, dmg, revives));
         } else {
             throw MonsterFileException(path, "tip necunoscut '" + type + "' la linia " + std::to_string(line_no));
         }
