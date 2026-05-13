@@ -35,7 +35,7 @@ public:
 
     void receiveDamage(int damage_amount);
     void attackMonster(Monster& target) const;
-    void fight(Battle& battle);
+    void fight(const Battle& battle);
 
     friend std::ostream& operator<<(std::ostream& os, const Knight& k);
 };

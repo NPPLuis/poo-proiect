@@ -61,10 +61,6 @@ bool Battle::finished() const {
     return roster.empty();
 }
 
-std::size_t Battle::remaining() const {
-    return roster.size();
-}
-
 std::ostream& operator<<(std::ostream& os, const Battle& b) {
     os << "Arena: " << b.arenaName << " (" << b.roster.size() << " monstri ramasi)";
     if (b.current) {

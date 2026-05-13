@@ -74,7 +74,7 @@ void Knight::attackMonster(Monster& target) const {
     target.receiveDamage(damage);
 }
 
-void Knight::fight(Battle& battle) {
+void Knight::fight(const Battle& battle) {
     if (!isAlive()) {
         throw DeadKnightException(name);
     }
