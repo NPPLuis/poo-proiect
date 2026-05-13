@@ -1,5 +1,7 @@
-# type name hp damage [fire_bonus]
+# type name hp damage [extra]
+# extra: dragon -> fire_bonus; skeleton -> revives
 goblin Grik 60 15
+skeleton Rattle 70 18 1
 orc Brutus 120 25
 dragon Smaug 200 35 25
 goblin Snik 40 12
