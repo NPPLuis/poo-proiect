@@ -29,7 +29,6 @@ public:
     void runRound(Knight& hero) const;
     [[nodiscard]] int dragonSlayerBonus(int base_damage) const;
     [[nodiscard]] bool finished() const;
-    [[nodiscard]] std::size_t remaining() const;
 
     friend std::ostream& operator<<(std::ostream& os, const Battle& b);
 };
