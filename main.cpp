@@ -1,35 +1,74 @@
 #include <iostream>
+
+#include "include/armor.h"
+#include "include/battle.h"
+#include "include/exceptions.h"
+#include "include/goblin.h"
+#include "include/knight.h"
+#include "include/monster_loader.h"
 #include "include/stats.h"
 #include "include/weapon.h"
-#include "include/armor.h"
-#include "include/knight.h"
-#include "include/monster.h"
+
+namespace {
+
+void demoInvalidStats() {
+    try {
+        Stats bad(-10, 5);
+        (void)bad;
+    } catch (const InvalidStatsException& e) {
+        std::cout << "[capturat] " << e.what() << "\n";
+    }
+}
+
+void demoDeadKnight() {
+    Knight ghost("Spectre", Stats(0, 5), Weapon("Os", 0), Armor("Zdrente", 0));
+    try {
+        Goblin dummy_target("test", 10, 1);
+        ghost.attackMonster(dummy_target);
+    } catch (const DeadKnightException& e) {
+        std::cout << "[capturat] " << e.what() << "\n";
+    }
+}
+
+}
 
 int main() {
-    Stats s1(200, 25);
-    Weapon w1("Sabie de foc", 40);
-    Armor a1("Aur", 50);
-    Knight karl("Karl", s1, w1, a1);
-    Monster goblin("Goblin", 80, 80);
+    try {
+        Stats s1(200, 25);
+        Weapon w1("Sabie de foc", 40);
+        Armor a1("Aur", 50);
+        Knight karl("Karl", s1, w1, a1);
 
-    Knight copie = karl;
-    Knight alt_cavaler("Arthur", Stats(90, 20), Weapon("Pumnal", 5), Armor("Piele", 10));
-    alt_cavaler = copie;
+        Knight copie = karl;
+        Knight alt_cavaler("Arthur", Stats(90, 20), Weapon("Pumnal", 5), Armor("Piele", 10));
+        alt_cavaler = copie;
 
-    std::cout << karl << "\n";
-    std::cout << goblin << "\n";
+        std::cout << karl << "\n";
+        std::cout << "Cavaleri creati pana acum: " << Knight::getCreatedCount() << "\n\n";
 
-   karl.attackMonster(goblin);
-   goblin.attackKnight(karl);
-    goblin.attackKnight(karl);
+        auto roster = MonsterLoader::loadFromFile("assets/monsters.txt");
+        Battle arena("Pestera", std::move(roster));
+        Battle copy_arena = arena;
+        (void)copy_arena;
 
-    s1.setHp(150);
-    std::cout << "Stats: HP " << s1.getHp() << " | ATK " << s1.getAttack() << "\n";
-    std::cout << "Arma: " << w1.getName() << " | Bonus DMG +" << w1.getBonusDamage() << "\n";
-    std::cout << "Armura: " << a1.getName() << " | Bonus HP +" << a1.getBonusHP() << "\n";
-    std::cout << "Cavaler Nume: " << karl.getName() << "\n";
+        std::cout << arena << "\n\n";
 
-    std::cout << "Monstru: " << goblin.getName() << " | HP Ramas: " << goblin.getHp() << " " << goblin.getDamage()<<"\n";
+        while (!arena.finished()) {
+            karl.fight(arena);
+            arena.runRound(karl);
+            arena.advance();
+            std::cout << "---\n";
+        }
+
+        demoInvalidStats();
+        demoDeadKnight();
+    } catch (const GameException& e) {
+        std::cerr << "Eroare de joc: " << e.what() << "\n";
+        return 1;
+    } catch (const std::exception& e) {
+        std::cerr << "Eroare neasteptata: " << e.what() << "\n";
+        return 2;
+    }
 
     return 0;
 }
