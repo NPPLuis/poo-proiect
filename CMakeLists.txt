@@ -65,6 +65,8 @@ add_executable(${MAIN_EXECUTABLE_NAME}
         include/battle.h
         src/exceptions.cpp
         include/exceptions.h
+        src/monster_loader.cpp
+        include/monster_loader.h
         src/knight.cpp
         include/knight.h
         src/weapon.cpp
@@ -107,5 +109,6 @@ if(APPLE)
 endif()
 
 copy_files(FILES tastatura.txt DIRECTORY assets COPY_TO_DESTINATION TARGET_NAME ${MAIN_EXECUTABLE_NAME})
+copy_files(FILES assets/monsters.txt TARGET_NAME ${MAIN_EXECUTABLE_NAME})
 # copy_files(FILES tastatura.txt config.json DIRECTORY images sounds COPY_TO_DESTINATION TARGET_NAME ${MAIN_EXECUTABLE_NAME})
 # copy_files(DIRECTORY images sounds COPY_TO_DESTINATION TARGET_NAME ${MAIN_EXECUTABLE_NAME})

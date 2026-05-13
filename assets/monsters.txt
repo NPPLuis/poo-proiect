@@ -1,0 +1,5 @@
+# type name hp damage [fire_bonus]
+goblin Grik 60 15
+orc Brutus 120 25
+dragon Smaug 200 35 25
+goblin Snik 40 12
