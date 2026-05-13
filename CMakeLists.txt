@@ -63,6 +63,8 @@ add_executable(${MAIN_EXECUTABLE_NAME}
         include/dragon.h
         src/battle.cpp
         include/battle.h
+        src/exceptions.cpp
+        include/exceptions.h
         src/knight.cpp
         include/knight.h
         src/weapon.cpp

@@ -1,12 +1,20 @@
 #include "../include/knight.h"
+#include "../include/battle.h"
+#include "../include/exceptions.h"
 #include "../include/monster.h"
+
 #include <iostream>
 
-Knight::Knight(const std::string& name_val, const Stats& stats_val, const Weapon& weapon_val, const Armor& armor_val) :
-     name(name_val), stats(stats_val), weapon(weapon_val), armor(armor_val) {}
+int Knight::total_created = 0;
+
+Knight::Knight(const std::string& name_val, const Stats& stats_val, const Weapon& weapon_val, const Armor& armor_val)
+    : name(name_val), stats(stats_val), weapon(weapon_val), armor(armor_val) {
+    ++total_created;
+}
 
 Knight::Knight(const Knight& other)
     : name(other.name), stats(other.stats), weapon(other.weapon), armor(other.armor) {
+    ++total_created;
     std::cout << "S-a creat o clona pentru cavalerul: " << name << std::endl;
 }
 
@@ -32,6 +40,14 @@ int Knight::getTotalHP() const {
     return stats.getHp() + armor.getBonusHP();
 }
 
+bool Knight::isAlive() const {
+    return getTotalHP() > 0;
+}
+
+int Knight::getCreatedCount() {
+    return total_created;
+}
+
 const std::string& Knight::getName() const {
     return name;
 }
@@ -44,13 +60,25 @@ std::ostream& operator<<(std::ostream& os, const Knight& k) {
 }
 
 void Knight::receiveDamage(int damage_amount) {
-    int hp_baza = stats.getHp();
+    const int hp_baza = stats.getHp();
     stats.setHp(hp_baza - damage_amount);
     std::cout << "HP ramas: " << getTotalHP() << std::endl;
 }
 
 void Knight::attackMonster(Monster& target) const {
-    int damage = this->getTotalAttack();
+    if (!isAlive()) {
+        throw DeadKnightException(name);
+    }
+    const int damage = getTotalAttack();
     std::cout << name << " ataca monstrul cu " << damage << " damage!\n";
     target.receiveDamage(damage);
+}
+
+void Knight::fight(Battle& battle) {
+    if (!isAlive()) {
+        throw DeadKnightException(name);
+    }
+    const int boosted = battle.dragonSlayerBonus(getTotalAttack());
+    std::cout << name << " loveste cu " << boosted << " damage!\n";
+    battle.runRound(*this);
 }
