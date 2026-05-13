@@ -35,6 +35,9 @@ Knight::~Knight() {
 int Knight::getTotalAttack() const {
     return stats.getAttack() + weapon.getBonusDamage();
 }
+int Knight::getTotalHP() const {
+    return stats.getHp()+ armor.getBonusHP();
+}
 
 int Knight::getTotalHP() const {
     return stats.getHp() + armor.getBonusHP();
