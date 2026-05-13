@@ -55,6 +55,12 @@ add_executable(${MAIN_EXECUTABLE_NAME}
         include/stats.h
         src/monster.cpp
         include/monster.h
+        src/goblin.cpp
+        include/goblin.h
+        src/orc.cpp
+        include/orc.h
+        src/dragon.cpp
+        include/dragon.h
         src/knight.cpp
         include/knight.h
         src/weapon.cpp
