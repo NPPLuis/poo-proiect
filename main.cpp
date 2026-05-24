@@ -21,7 +21,7 @@ void demoInvalidStats() {
 }
 
 void demoDeadKnight() {
-    Knight ghost("Spectre", Stats(0, 5), Weapon("Os", 0), Armor("Zdrente", 0));
+    Knight ghost("Spectre", Stats(0, 5), Weapon("Os", 0), Armor("Haine", 0));
     try {
         Goblin dummy_target("test", 10, 1);
         ghost.attackMonster(dummy_target);
