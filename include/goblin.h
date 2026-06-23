@@ -12,7 +12,6 @@ protected:
 
 public:
     Goblin(const std::string& name_val, int hp_val, int damage_val);
-
     [[nodiscard]] std::unique_ptr<Monster> clone() const override;
     void specialAttack(Knight& target) const override;
 };

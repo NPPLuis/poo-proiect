@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include "include/armor.h"
 #include "include/battle.h"
 #include "include/exceptions.h"
@@ -8,7 +7,8 @@
 #include "include/monster_loader.h"
 #include "include/stats.h"
 #include "include/weapon.h"
-
+#include "include/inventory.h"
+#include "include/utils.h"
 namespace {
 
 void demoInvalidStats() {
@@ -34,17 +34,38 @@ void demoDeadKnight() {
 
 int main() {
     try {
+
+        Inventory<Weapon> weaponStash;
+        weaponStash.addItem(Weapon("Excalibur", 100));
+        weaponStash.addItem(Weapon("Arc de lemn", 15));
+
+        Inventory<Armor> armorStash;
+        armorStash.addItem(Armor("Scut de Fier", 50));
+
+        std::cout << "--- Verificam inventarele generice (Clasa Template) ---\n";
+        weaponStash.showInventory();
+        armorStash.showInventory();
+        std::cout << "\n";
+
+
         Stats s1(200, 25);
         Weapon w1("Sabie de foc", 40);
         Armor a1("Aur", 50);
         Knight karl("Karl", s1, w1, a1);
 
         Knight copie = karl;
-        Knight alt_cavaler("Arthur", Stats(90, 20), Weapon("Pumnal", 5), Armor("Piele", 10));
+        Knight alt_cavaler("ARthur", Stats(90, 20), Weapon("Pumnal", 5), Armor("Piele", 10));
         alt_cavaler = copie;
 
         std::cout << karl << "\n";
         std::cout << "Cavaleri creati pana acum: " << Knight::getCreatedCount() << "\n\n";
+
+
+        std::cout << "--- Verificam functia de Highlight (Functie Template) ---\n";
+        printHighlight(karl);
+        printHighlight(w1);
+        std::cout << "\n";
+
 
         auto roster = MonsterLoader::loadFromFile("assets/monsters.txt");
         Battle arena("Pestera", std::move(roster));
@@ -62,16 +83,23 @@ int main() {
 
         if (!karl.isAlive()) {
             std::cout << "Karl a cazut in lupta.\n";
+        } else {
+            std::cout << "Karl a curatat arena de monstri!\n";
         }
 
+        std::cout << "\n--- Incepere Demo-uri de Exceptii ---\n";
         demoInvalidStats();
         demoDeadKnight();
+
     } catch (const GameException& e) {
         std::cerr << "Eroare de joc: " << e.what() << "\n";
         return 1;
     } catch (const std::exception& e) {
         std::cerr << "Eroare neasteptata: " << e.what() << "\n";
         return 2;
+    } catch (...) {
+        std::cerr << "Eroare total necunoscuta a aparut!\n";
+        return 3;
     }
 
     return 0;
